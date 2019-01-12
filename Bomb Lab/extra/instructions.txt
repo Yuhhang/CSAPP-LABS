@@ -1,0 +1,28 @@
+首先安装gdb
+
+centos: 
+#yum install gdb
+ 
+cd到bomb目录
+objdump -d ./bomb > disassemble_all.txt
+//输出全部反汇编到指定txt文件,方便查看
+
+可在约346行看到phase_1
+
+#gdb bomb
+进入调试
+
+(gdb) break phase_1
+(gdb) break explode_bomb
+设置两个断点
+(gdb) run
+(gdb) n
+输入一字符串
+(gdb) x/s $rdi
+查看刚才输入的字符串
+(gdb) n
+执行到explode_bomb
+(gdb) x/s $edi
+查看对比的字符串，即为答案
+
+
